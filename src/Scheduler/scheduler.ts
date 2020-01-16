@@ -22,29 +22,6 @@ export class Scheduler {
     }
 
     processInstance(instance: Instance) {
-        this.initEDDInstance(instance);
-        this.initRandomInstance(instance);
-
-        this.currentInstance = this.eddInstance.cloneInstance();
-        const task = this.currentInstance.getRandomAssignedTask();
-        this.takeTaskOffMachine(this.currentInstance, task);
-        this.writeToFile(this.currentInstance);
-
-        // for (let i: number = 0; i < 5; i++) {
-        // this.currentInstance = this.cloneInstance(this.previousInstance);
-        // // do something with instance 
-        // }
-        // find task with max tardiness
-        // find machine with min tardiness
-        // insert task on this machine so its tardiness is 0
-        // or 
-        // find random task with tardiness
-        // find random machine
-        // insert task on this machine so its tardiness is 0
-        // or 
-        // find random task
-        // find random machine
-        // insert randomly
     }
 
     initEDDInstance(instance: Instance) {
