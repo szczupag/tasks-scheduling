@@ -1,6 +1,6 @@
-import { Parser } from './parser';
-import { Scheduler } from './scheduler';
-import { Instance } from './instance';
+import { Parser } from './Instance/parser';
+import { Scheduler } from './Scheduler/scheduler';
+import { Instance } from './Instance/instance';
 
 const instancesPath: string = 'instances';
 const resultsPath: string = 'results';

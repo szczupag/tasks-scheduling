@@ -1,7 +1,6 @@
 import { readdirSync, readFileSync } from 'fs';
 import { Instance } from './instance'; 
 import { Task } from './task';
-import { Machines } from './machines';
 
 export class Parser {
     instancesPath: string;

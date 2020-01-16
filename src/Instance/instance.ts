@@ -1,6 +1,6 @@
 import { Task } from './task';
-import { Machine } from './machine';
-import { Machines } from './machines';
+import { Machine } from '../Machine/machine';
+import { Machines } from '../Machine/machines';
 
 export class Instance {
     tasks: Array<Task>;

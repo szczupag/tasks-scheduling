@@ -1,4 +1,4 @@
-import { Task } from './task';
+import { Task } from '../Instance/task';
 
 export class Machine {
     index: number;

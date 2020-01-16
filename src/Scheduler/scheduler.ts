@@ -1,8 +1,7 @@
 import { writeFileSync, appendFileSync } from 'fs';
-import { Task } from './task';
-import { Machine } from './machine';
-import { Instance } from './instance';
-import { Machines } from './machines';
+import { Task } from '../Instance/task';
+import { Machine } from '../Machine/machine';
+import { Instance } from '../Instance/instance';
 
 export class Scheduler {
     instances: Array<Instance>;
