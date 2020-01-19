@@ -47,8 +47,7 @@ export class Machine {
         this.tasks.splice(taskIndex, 1);
         task.off();
         let previousTaskCompletionTime: number = 0;
-        if(taskIndex > 0) { previousTaskCompletionTime = this.tasks[taskIndex - 1].getCompletionTime();
-        console.log('[previous task]', this.tasks[taskIndex - 1]) }
+        if(taskIndex > 0) previousTaskCompletionTime = this.tasks[taskIndex - 1].getCompletionTime();
         this.updateTasksTimes(taskIndex, previousTaskCompletionTime);
     }
 
@@ -106,5 +105,9 @@ export class Machine {
 
     getTasksCount(): number {
         return this.tasks.length;
+    }
+
+    randomMachineTime(): number {
+        return Math.floor(Math.random() * (this.completionTime + 1));
     }
 }

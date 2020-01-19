@@ -23,8 +23,10 @@ export class Instance {
             task.getDueDate(),
             task.getCompletionTime(),
             task.getTardiness(),
-            task.getIsAssigned())
-        );
+            task.getIsAssigned(),
+            // task.getWeights().map(machine => [...machine]),
+            task.getWeights(),
+        ));
         const machinesCopy: Array<Machine> = this.getInstancesMachines().getMachines().map(machine => {
             const tasksOnMachine = machine.getTasks().map(task => {
                 return tasksCopy.find(taskCopy => taskCopy.getIndex() === task.getIndex())
@@ -55,11 +57,15 @@ export class Instance {
         machine.putTask(task);
     }
 
+    increaseTasksWeights() {
+        this.machines.getMachines().forEach(machine => {
+            machine.getTasks().forEach(task => task.increaseWeightOnMachine(machine.getIndex()))
+        });
+    }
+
     takeTaskOff(task: Task) {
         const machine = this.machines.getMachines().find(machine => machine.getTasks().includes(task));
-        console.log('[take off]', task, machine);
         machine.takeTaskOff(task);
-        console.log('[take off]', task, machine);
     }
 
     insertTask(task: Task, machine: Machine, time: number) {
@@ -99,5 +105,15 @@ export class Instance {
 
     getRandomTaskWithMaxTardiness() {
         // const 
+    }
+
+    getBestTaskForMachine(machine: Machine): Task {
+        const tasks = this.tasks.filter(task =>
+            task.getReadyTime() <= machine.getCompletionTime()
+            && task.getIsAssigned() === false
+            && task.getBestMachineIndex()[0] == machine.getIndex()
+            && task.getBestMachineIndex()[1] - task.getProcessingTime() <= machine.getCompletionTime()
+        );
+        return tasks[Math.floor(Math.random() * tasks.length)];
     }
 }
