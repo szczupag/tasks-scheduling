@@ -16,7 +16,7 @@ export class Task {
         completionTime: number = 0,
         tardiness: number = 0,
         isAssigned: boolean = false,
-        weights: Array<Array<number>> = [[], [], [], []]
+        weights: Array<Array<number>> = [new Array<number>(), new Array<number>(), new Array<number>(), new Array<number>()]
     ) {
         this.index = index;
         this.processingTime = processingTime;
@@ -66,9 +66,12 @@ export class Task {
 
     getBestMachineIndex(): [number, number] {
         const maxElementsMachine = this.weights.reduce((a, b) => a.length > b.length ? a : b);
-        const maxElementsMachineIndex = this.weights.indexOf(maxElementsMachine) + 1;
-        const taskPosition = maxElementsMachine.reduce((a, b) => a + b) / maxElementsMachine.length;
-        return [maxElementsMachineIndex, taskPosition];
+        if(maxElementsMachine.length > 0) {
+            const maxElementsMachineIndex = this.weights.indexOf(maxElementsMachine) + 1;
+            const taskPosition = maxElementsMachine.reduce((a, b) => a + b) / maxElementsMachine.length;
+            return [maxElementsMachineIndex, taskPosition];
+        }
+        return [undefined, undefined];
     }
 
     on(taskCompletionTime: number) {
