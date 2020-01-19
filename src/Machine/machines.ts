@@ -3,7 +3,6 @@ import { Machine } from './machine';
 
 export class Machines {
     machines: Array<Machine>;
-    totalTardiness: number;
 
     constructor(machines?: Array<Machine>, totalTardiness: number = 0) {
         if(!machines) {
@@ -15,7 +14,6 @@ export class Machines {
         } else {
             this.machines = machines;
         }
-        this.totalTardiness = totalTardiness;
     }
 
     getMachine(machineIndex: number): Machine {
