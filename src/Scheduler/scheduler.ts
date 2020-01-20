@@ -31,7 +31,9 @@ export class Scheduler {
         */
         this.bestSchedule = instance.cloneInstance();
         this.schedule(this.bestSchedule, this.earliestDueDate);
-        for (let i: number = 0; i < 10000; i++) {
+        const start = new Date().getTime();
+        const maxTime = instance.getLength() * 100;
+        while (new Date().getTime() - start < maxTime) {
             this.currentInstance = this.bestSchedule.cloneInstance();
             for (let i: number = 0; i < 10000; i++) {
                 this.shiftRandomTaskToBestOrRandomMachine(this.currentInstance);
@@ -41,7 +43,9 @@ export class Scheduler {
                 }
             }
         }
-        this.showSchedule(this.bestSchedule);
+        const end = new Date().getTime();
+        console.log('[TIME]', end - start, '[SCORE]', this.bestSchedule.getInstancesMachines().countTotalTardiness())
+        // this.showSchedule(this.bestSchedule);
         this.writeToFile(this.bestSchedule);
     }
 
